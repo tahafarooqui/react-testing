@@ -8,7 +8,6 @@ var firebase = require("firebase/app");
 // Add the Firebase products that you want to use
 require("firebase/auth");
 require("firebase/firestore");
-      var db = firebase.firestore();
 
   var firebaseConfig = {
     apiKey: "AIzaSyDDU8PiSVhHT8MOPuC_RbXHuJnYIDASrwg",
@@ -23,6 +22,7 @@ require("firebase/firestore");
   // Initialize Firebase
   if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
+  
   }
 
 class App extends Component {
@@ -96,15 +96,31 @@ firebase.auth().onAuthStateChanged(function(user) {
 
   }
 
-  render() {
+  updateData(){
+
+      var db = firebase.firestore();
 
   var docRef = db.collection('users').doc('CN48DNRwqhZpqkpWMq1Y');
 docRef.update({
-    name: "Frankdd",
+    name: "taha",
 
  });
 
-this.getprofile();
+
+  }
+
+    deleteData(){
+
+      var db = firebase.firestore();
+    db.collection("users").doc("CN48DNRwqhZpqkpWMq1Y").delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
+  }
+
+  render() {
+   
 
 
     return (
